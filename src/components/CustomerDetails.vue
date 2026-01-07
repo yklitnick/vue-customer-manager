@@ -1,18 +1,18 @@
 <template>
     <div class="details container">
         <router-link to="/">Back</router-link>
-        <h1 class="page-header">{{ customer.first_name }} {{ customer.last_name }}
-            <span class="pull-right">
+        <h1 class="h1 mb-4">{{ customer.first_name }} {{ customer.last_name }}
+            <span class="float-end">
                 <router-link class="btn btn-primary" v-bind:to="'/edit/' + customer.id">Edit</router-link>
                 <button class="btn btn-danger" v-on:click="deleteCustomer(customer.id)">Delete</button>
             </span>
         </h1>
         <ul class="list-group">
             <li class="list-group-item">
-                <span class="glyphicon glyphicon-phone" aria-hidden="true"></span> {{ customer.phone }}
+                <span class="fw-bold">Phone: </span> {{ customer.phone }}
             </li>
             <li class="list-group-item">
-                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ customer.email }}
+                <span class="fw-bold">Email: </span> {{ customer.email }}
             </li>
         </ul>
         <ul class="list-group">
@@ -52,4 +52,8 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+button {
+    margin-left: 5px;
+}
+</style>

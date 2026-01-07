@@ -1,9 +1,9 @@
 <template>
     <div class="customers container">
         <AlertObject v-if="alert" v-bind:message="alert" />
-        <h1 class="page-header">Manage Customers</h1>
+        <h1 class="h1 mb-4">Manage Customers</h1>
         <input type="text" class="form-control" placeholder="Enter Last Name" v-model="filterInput">
-        <br>
+
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -19,7 +19,7 @@
                     <td>{{ customer.last_name }}</td>
                     <td>{{ customer.email }}</td>
                     <td>
-                        <router-link class="btn btn-default" v-bind:to="'/customer/' + customer.id">View</router-link>
+                        <router-link class="btn btn-secondary" v-bind:to="'/customer/' + customer.id">View</router-link>
                     </td>
                 </tr>
             </tbody>

@@ -1,26 +1,21 @@
 <template>
     <div id="app">
-        <nav class="navbar navbar-default">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                        aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="/">Vue.js Customers</a>
-                </div>
+                <a class="navbar-brand" href="/">Vue.js Customers</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar"
+                    aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li><router-link to="/">Home</router-link></li>
-                        <li><router-link to="/about">About</router-link></li>
+                        <li class="nav-item"><router-link class="nav-link" to="/">Home</router-link></li>
+                        <li class="nav-item"><router-link class="nav-link" to="/about">About</router-link></li>
                     </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><router-link to="/add">Add Customer</router-link></li>
+                    <ul class="nav navbar-nav ms-auto">
+                        <li class="nav-item"><router-link class="nav-link" to="/add">Add Customer</router-link></li>
                     </ul>
-                </div><!--/.nav-collapse -->
+                </div>
             </div>
         </nav>
         <router-view></router-view>
