@@ -5,6 +5,8 @@ import vueResource from 'vue-resource';
 import CustomersPage from './components/CustomersPage.vue';
 import AboutPage from './components/AboutPage.vue';
 import AddCustomer from './components/AddCustomer.vue';
+import CustomerDetails from './components/CustomerDetails.vue';
+import EditCustomer from './components/EditCustomer.vue';
 
 Vue.use(vueResource);
 Vue.use(VueRouter);
@@ -16,6 +18,8 @@ const router = new VueRouter({
         { path: '/', component: CustomersPage },
         { path: '/about', component: AboutPage },
         { path: '/add', component: AddCustomer },
+        { path: '/customer/:id', component: CustomerDetails },
+        { path: '/edit/:id', component: EditCustomer },
     ],
 });
 
@@ -34,7 +38,7 @@ new Vue({
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">Vue.js Customers</a>
+                        <a class="navbar-brand" href="/">Vue.js Customers</a>
                     </div>
                     <div id="navbar" class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">

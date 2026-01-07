@@ -1,6 +1,9 @@
 <template>
     <div class="customers container">
+        <AlertObject v-if="alert" v-bind:message="alert" />
         <h1 class="page-header">Manage Customers</h1>
+        <input type="text" class="form-control" placeholder="Enter Last Name" v-model="filterInput">
+        <br>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -11,11 +14,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="customer in customers">
+                <tr v-for="customer in filterBy(customers, filterInput)">
                     <td>{{ customer.first_name }}</td>
                     <td>{{ customer.last_name }}</td>
                     <td>{{ customer.email }}</td>
-                    <td></td>
+                    <td>
+                        <router-link class="btn btn-default" v-bind:to="'/customer/' + customer.id">View</router-link>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -23,11 +28,14 @@
 </template>
 
 <script>
+import AlertObject from './AlertObject.vue';
 export default {
     name: 'CustomersPage',
     data() {
         return {
-            customers: []
+            customers: [],
+            alert: '',
+            filterInput: ''
         };
     },
     methods: {
@@ -36,13 +44,25 @@ export default {
                 .then(response => {
                     this.customers = response.body;
                 });
+        },
+        filterBy(list, value) {
+            value = value.charAt(0).toUpperCase() + value.slice(1);
+            return list.filter(function (customer) {
+                return customer.last_name.indexOf(value) > -1;
+            });
         }
     },
     created: function () {
+        if (this.$route.query.alert) {
+            this.alert = this.$route.query.alert;
+        }
         this.fetchCustomers();
     },
     updated: function () {
         this.fetchCustomers();
+    },
+    components: {
+        AlertObject
     }
 }
 </script>

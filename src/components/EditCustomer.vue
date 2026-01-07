@@ -1,8 +1,8 @@
 <template>
-    <div class="add container">
+    <div class="edit container">
         <AlertObject v-if="alert" v-bind:message="alert" />
-        <h1 class="page-header">Add Customer</h1>
-        <form v-on:submit="addCustomer">
+        <h1 class="page-header">Edit Customer</h1>
+        <form v-on:submit="updateCustomer">
             <div class="well">
                 <h4>Customer Info</h4>
                 <div class="form-group">
@@ -48,7 +48,7 @@
 <script>
 import AlertObject from './AlertObject.vue';
 export default {
-    name: 'AddCustomer',
+    name: 'EditCustomer',
     data() {
         return {
             customer: {},
@@ -56,14 +56,20 @@ export default {
         };
     },
     methods: {
-        addCustomer(e) {
+        fetchCustomer(id) {
+            this.$http.get('http://slimapp/api/customers/' + id)
+                .then(response => {
+                    this.customer = response.body;
+                });
+        },
+        updateCustomer(e) {
             e.preventDefault();
             if (!this.customer.first_name ||
                 !this.customer.last_name ||
                 !this.customer.email) {
                 this.alert = 'please fill out all required fields';
             } else {
-                let newCustomer = {
+                let updatedCustomer = {
                     first_name: this.customer.first_name,
                     last_name: this.customer.last_name,
                     email: this.customer.email,
@@ -72,12 +78,15 @@ export default {
                     city: this.customer.city,
                     state: this.customer.state
                 }
-                this.$http.post('http://slimapp/api/customers/add', newCustomer)
+                this.$http.put('http://slimapp/api/customers/update/' + this.$route.params.id, updatedCustomer)
                     .then(function (response) {
-                        this.$router.push({ path: '/', query: { alert: 'Customer Added' } });
+                        this.$router.push({ path: '/', query: { alert: 'Customer Updated' } });
                     })
             }
         }
+    },
+    created: function () {
+        this.fetchCustomer(this.$route.params.id);
     },
     components: {
         AlertObject
