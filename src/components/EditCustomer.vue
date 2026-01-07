@@ -59,7 +59,7 @@ export default {
         fetchCustomer(id) {
             this.$http.get('http://slimapp/api/customers/' + id)
                 .then(response => {
-                    this.customer = response.body;
+                    this.customer = response.data;
                 });
         },
         updateCustomer(e) {
@@ -79,7 +79,7 @@ export default {
                     state: this.customer.state
                 }
                 this.$http.put('http://slimapp/api/customers/update/' + this.$route.params.id, updatedCustomer)
-                    .then(function (response) {
+                    .then((response) => {
                         this.$router.push({ path: '/', query: { alert: 'Customer Updated' } });
                     })
             }

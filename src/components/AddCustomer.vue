@@ -73,7 +73,7 @@ export default {
                     state: this.customer.state
                 }
                 this.$http.post('http://slimapp/api/customers/add', newCustomer)
-                    .then(function (response) {
+                    .then((response) => {
                         this.$router.push({ path: '/', query: { alert: 'Customer Added' } });
                     })
             }

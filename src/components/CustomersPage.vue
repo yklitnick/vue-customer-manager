@@ -42,7 +42,7 @@ export default {
         fetchCustomers() {
             this.$http.get('http://slimapp/api/customers')
                 .then(response => {
-                    this.customers = response.body;
+                    this.customers = response.data;
                 });
         },
         filterBy(list, value) {
